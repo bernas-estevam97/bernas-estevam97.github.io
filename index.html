@@ -1,269 +1,641 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bernardo - Web Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Bernardo Estevam | Bioinformatician, Automation & Data Analyst</title>
+    <meta name="description" content="Portfolio of Bernardo Estevam: Bioinformatician, Python automation engineer, and data analyst transforming noisy biological datasets into functional intelligence.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <link rel="shortcut icon" href="images/icon.ico">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="container">
-            <a href="" class="logo">Bernardo<span class="accent"> Estevam</span></a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Tech Stack</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact" class="btn-primary">Get in contact</a></li>
-            </ul>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
+    <!-- Top Navigation -->
+    <header>
+        <nav class="navbar" id="navbar">
+            <div class="container nav-container">
+                <a href="#hero" class="logo">
+                    <span class="logo-symbol">B</span>
+                    <span class="logo-text">Bernardo<span>.</span></span>
+                </a>
 
-    <header class="hero">
-        <div class="container hero-content">
-            <img src="images/bernardo.png"><br>
-            <span class="tagline">Bioinformatician, Automation & Data Analyst</span>
-            <h1>Transforming noisy biological data into <span class="text-gradient">functional insights</span>.</h1>
-            <p>From biology and neuroscience, specializing in Python automations, interactive dashboards and applications that save time and drive decisions with background in data filtering and processing.</p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn-primary">View My Work</a>
-                <a href="#contact" class="btn-secondary">Contact Me</a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Tech Stack</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <!-- Dark / Light Theme Toggle -->
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+
+                    <a href="#contact" class="btn btn-primary d-none-mobile">Get in touch</a>
+
+                    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <section id="about" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>I am a bioinformatics developer who  mainly bridges the gap between biological raw data and actionable research logic. My focus is on removing manual bottlenecks.</p>
-                    <p>Whether it's automating tedious processes, filtering various types of data, perform extensive statistical analysis, I am able to develop apps and build systems that work and make sense in an analytical and biological standpoint.</p>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>1000+</h3>
-                        <p>Hours Saved</p>
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="badge status-badge">
+                        <span class="badge-dot"></span>
+                        <span>Available for Projects & Roles</span>
                     </div>
-                    <div class="stat-card">
-                        <h3>5</h3>
-                        <p>Pipelines Built</p>
+
+                    <h1 class="hero-title">
+                        Transforming complex biological data into <span class="text-gradient">actionable intelligence</span>.
+                    </h1>
+
+                    <p class="hero-description">
+                        From biology and neuroscience to scalable software engineering. Specializing in high-performance Python automations, interactive dashboards, and reproducible pipelines that remove manual bottlenecks.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>Explore Projects</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Contact Me</span>
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+
+                    <div class="hero-socials">
+                        <a href="https://github.com/bernas-estevam97" target="_blank" rel="noopener noreferrer" class="hero-social-link">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/bernas-estevam97/" target="_blank" rel="noopener noreferrer" class="hero-social-link">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="avatar-wrapper">
+                        <div class="avatar-glow"></div>
+                        <div class="avatar-frame">
+                            <img src="images/bernardo.png" alt="Bernardo Estevam" class="avatar-img">
+                        </div>
+
+                        <!-- Floating Micro-Badges -->
+                        <div class="floating-pill pill-1">
+                            <i class="fas fa-dna"></i>
+                            <span>Bioinformatics</span>
+                        </div>
+                        <div class="floating-pill pill-2">
+                            <i class="fas fa-bolt"></i>
+                            <span>Python Automation</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="skills" class="bg-dark section-padding">
-        <div class="container">
-            <h2 class="section-title">Tech Stack</h2>
-            <div class="skills-wrapper">
-                <div class="skill-category">
-                    <h3>Data Analysis</h3>
-                    <div class="skill-tags">
-                        <span>Python (Pandas/NumPy)</span>
-                        <span>Pingouin</span>
-                        <span>Statsmodels</span>
-                        <span>SQL (PostgreSQL)</span>
-                        <span>Excel/VBA</span>
-                        <span>R</span>
-                        <span>SPSS</span>
-                        <span>Graphpad Prism</span>
-                    </div>
+        <!-- About & Key Impact Metrics -->
+        <section id="about" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker"><i class="fas fa-user"></i> Background</span>
+                    <h2 class="section-title">Bridging Research & Engineering</h2>
+                    <p class="section-subtitle">Combining deep biological understanding with computational rigor to build systems that scale.</p>
                 </div>
-                <div class="skill-category">
-                    <h3>Visualization</h3>
-                    <div class="skill-tags">
-                        <span>Streamlit</span>
-                        <span>JupyterLab</span>
-                        <span>Matplotlib</span>
-                        <span>Seaborn</span>
-                        <span>Plotly</span>
+
+                <div class="about-grid">
+                    <div class="about-card">
+                        <p>
+                            I am a bioinformatics developer who bridges the gap between complex raw biological data and actionable research logic. My core mission is eliminating tedious manual bottlenecks through smart automation and structured architecture.
+                        </p>
+                        <p>
+                            Whether extracting signals from noisy high-throughput datasets, filtering multi-dimensional experimental results, or conducting statistical modeling, I engineer applications and pipelines that make sense from both a biological and analytical standpoint.
+                        </p>
+
+                        <div class="about-highlights">
+                            <span class="about-highlight-tag"><i class="fas fa-check-circle"></i> Pipeline Architecture</span>
+                            <span class="about-highlight-tag"><i class="fas fa-check-circle"></i> Statistical Analysis</span>
+                            <span class="about-highlight-tag"><i class="fas fa-check-circle"></i> Custom Web & Desktop GUIs</span>
+                            <span class="about-highlight-tag"><i class="fas fa-check-circle"></i> Parquet & Big Data Tuning</span>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Automation</h3>
-                    <div class="skill-tags">
-                        <span>Selenium</span>
-                        <span>BeautifulSoup</span>
-                        <span>Zapier</span>
-                        <span>Cron Jobs</span>
-                        <span>APIs</span>
-                        <span>PyAutoGUI</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Machine Learning</h3>
-                    <div class="skill-tags">
-                        <span>PyTorch</span>
-                        <span>Tensorflow</span>
-                        <span>Scikit-learn</span>
-                        <span>Keras</span>
-                        <span>SciPy</span>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-stopwatch"></i></div>
+                            <div class="stat-number"><span class="counter" data-target="1000">0</span><span class="stat-suffix">+</span></div>
+                            <div class="stat-label">Hours Saved via Automation</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-diagram-project"></i></div>
+                            <div class="stat-number"><span class="counter" data-target="5">0</span><span class="stat-suffix">+</span></div>
+                            <div class="stat-label">End-to-End Pipelines Built</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+                            <div class="stat-number"><span class="counter" data-target="7">0</span><span class="stat-suffix">+</span></div>
+                            <div class="stat-label">Shipped Tools & Applications</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-shield-halved"></i></div>
+                            <div class="stat-number"><span class="counter" data-target="100">0</span><span class="stat-suffix">%</span></div>
+                            <div class="stat-label">Reproducibility & Quality</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="projects" class="section-padding">
+        <!-- Tech Stack -->
+        <section id="skills" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker"><i class="fas fa-microchip"></i> Capabilities</span>
+                    <h2 class="section-title">Technical Expertise</h2>
+                    <p class="section-subtitle">Tooling and frameworks leveraged to build dependable, high-throughput analytical workflows.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <!-- Data Analysis & Statistics -->
+                    <div class="skill-category-card">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div>
+                                <h3>Data Science & Statistics</h3>
+                                <p>Analysis, hypothesis testing & storage</p>
+                            </div>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-pill"><i class="fab fa-python"></i> Python (Pandas/NumPy)</span>
+                            <span class="skill-pill"><i class="fas fa-calculator"></i> Pingouin</span>
+                            <span class="skill-pill"><i class="fas fa-chart-simple"></i> Statsmodels</span>
+                            <span class="skill-pill"><i class="fas fa-database"></i> SQL (PostgreSQL)</span>
+                            <span class="skill-pill"><i class="fas fa-file-excel"></i> Excel & VBA</span>
+                            <span class="skill-pill"><i class="fab fa-r-project"></i> R Language</span>
+                            <span class="skill-pill"><i class="fas fa-square-poll-vertical"></i> SPSS</span>
+                            <span class="skill-pill"><i class="fas fa-chart-column"></i> GraphPad Prism</span>
+                        </div>
+                    </div>
+
+                    <!-- Visualization & Dashboards -->
+                    <div class="skill-category-card">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fas fa-display"></i>
+                            </div>
+                            <div>
+                                <h3>Visualization & Apps</h3>
+                                <p>Interactive dashboards & intuitive UX</p>
+                            </div>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-pill"><i class="fas fa-chart-line"></i> Streamlit</span>
+                            <span class="skill-pill"><i class="fas fa-chart-area"></i> Plotly</span>
+                            <span class="skill-pill"><i class="fas fa-code"></i> Django</span>
+                            <span class="skill-pill"><i class="fas fa-book-open"></i> JupyterLab</span>
+                            <span class="skill-pill"><i class="fas fa-image"></i> Matplotlib</span>
+                            <span class="skill-pill"><i class="fas fa-palette"></i> Seaborn</span>
+                            <span class="skill-pill"><i class="fab fa-js"></i> JavaScript</span>
+                            <span class="skill-pill"><i class="fab fa-html5"></i> HTML5 & Modern CSS</span>
+                        </div>
+                    </div>
+
+                    <!-- Automation & Data Pipelines -->
+                    <div class="skill-category-card">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fas fa-gears"></i>
+                            </div>
+                            <div>
+                                <h3>Automation & ETL</h3>
+                                <p>High-speed scraping & batch jobs</p>
+                            </div>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-pill"><i class="fas fa-robot"></i> Selenium</span>
+                            <span class="skill-pill"><i class="fas fa-filter"></i> BeautifulSoup</span>
+                            <span class="skill-pill"><i class="fas fa-microchip"></i> Multiprocessing</span>
+                            <span class="skill-pill"><i class="fas fa-network-wired"></i> REST APIs</span>
+                            <span class="skill-pill"><i class="fas fa-file-code"></i> Python-Calamine</span>
+                            <span class="skill-pill"><i class="fas fa-bolt"></i> PyArrow (Parquet)</span>
+                            <span class="skill-pill"><i class="fas fa-clock"></i> Cron Jobs</span>
+                            <span class="skill-pill"><i class="fas fa-computer-mouse"></i> PyAutoGUI</span>
+                        </div>
+                    </div>
+
+                    <!-- Machine Learning & Modeling -->
+                    <div class="skill-category-card">
+                        <div class="skill-header">
+                            <div class="skill-icon-wrapper">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div>
+                                <h3>Machine Learning</h3>
+                                <p>Predictive analytics & bio-algorithms</p>
+                            </div>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-pill"><i class="fas fa-network-wired"></i> PyTorch</span>
+                            <span class="skill-pill"><i class="fas fa-cubes"></i> TensorFlow</span>
+                            <span class="skill-pill"><i class="fas fa-diagram-next"></i> Scikit-learn</span>
+                            <span class="skill-pill"><i class="fas fa-layer-group"></i> Keras</span>
+                            <span class="skill-pill"><i class="fas fa-atom"></i> SciPy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects with Professional Slider & Filter Tabs -->
+        <section id="projects" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker"><i class="fas fa-folder-open"></i> Portfolio</span>
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Real-world applications, biological databases, high-throughput pipelines, and analytical dashboards.</p>
+                </div>
+
+                <!-- Projects Controls: Category Filter + Carousel / Grid Toggle + Carousel Arrows -->
+                <div class="projects-controls">
+                    <div class="project-filters" id="projectFilters">
+                        <button class="filter-btn active" data-filter="all">All Projects</button>
+                        <button class="filter-btn" data-filter="web">Web & Database</button>
+                        <button class="filter-btn" data-filter="automation">Automation & ETL</button>
+                        <button class="filter-btn" data-filter="gui">Dashboards & GUI</button>
+                    </div>
+
+                    <div class="project-actions-bar">
+                        <!-- View mode toggle: Carousel Slider vs Grid -->
+                        <div class="view-toggle">
+                            <button class="view-btn active" id="viewSlider" title="Slider View" aria-label="Switch to Slider View">
+                                <i class="fas fa-sliders"></i>
+                            </button>
+                            <button class="view-btn" id="viewGrid" title="Grid View" aria-label="Switch to Grid View">
+                                <i class="fas fa-table-cells-large"></i>
+                            </button>
+                        </div>
+
+                        <!-- Slider Navigation Controls -->
+                        <div class="slider-nav" id="sliderNav">
+                            <button class="slider-btn" id="prevSlide" aria-label="Previous Project Slide">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <span class="slider-counter" id="sliderCounter">01 / 07</span>
+                            <button class="slider-btn" id="nextSlide" aria-label="Next Project Slide">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider / Grid Container -->
+                <div class="slider-container projects-container" id="projectsContainer">
+                    <div class="slider-track" id="sliderTrack">
+
+                        <!-- Project 1: PolyQ Database -->
+                        <article class="project-card" data-category="web">
+                            <div class="project-card-top">
+                                <div class="project-icon-box">
+                                    <i class="fa-solid fa-dna"></i>
+                                </div>
+                                <span class="project-badge-category">Web & Database</span>
+                            </div>
+                            <h3 class="project-card-title">PolyQ Database</h3>
+                            <p class="project-card-desc">
+                                A production Django web application backed by Microsoft SQL Server hosting authoritative clinical and research data for the 9 known polyglutamine neurodegenerative disorders, spanning molecular pathology to disease genetics.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">Python/Django</span>
+                                <span class="project-tech-tag">MSSQL</span>
+                                <span class="project-tech-tag">JavaScript</span>
+                                <span class="project-tech-tag">Bioinformatics</span>
+                            </div>
+                            <div class="project-card-links">
+                                <a href="https://polyq.pt/" target="_blank" rel="noopener noreferrer" class="project-link primary-link">
+                                    <span>Live Portal</span>
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Project 2: Mouseframe Web -->
+                        <article class="project-card" data-category="web">
+                            <div class="project-card-top">
+                                <div class="project-icon-box">
+                                    <i class="fa-solid fa-paw"></i>
+                                </div>
+                                <span class="project-badge-category">Web Application</span>
+                            </div>
+                            <h3 class="project-card-title">Mouseframe - Web Application</h3>
+                            <p class="project-card-desc">
+                                Scientific application that processes digitized images of walking footprint patterns in rodent models, extracting multi-metric quantitative measurements crucial for neuroscience and locomotion research.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">Python/Django</span>
+                                <span class="project-tech-tag">JavaScript/Ajax</span>
+                                <span class="project-tech-tag">SQLite</span>
+                                <span class="project-tech-tag">Google ReCaptcha V3</span>
+                            </div>
+                            <div class="project-card-links">
+                                <a href="https://mouseframe.pt/" target="_blank" rel="noopener noreferrer" class="project-link primary-link">
+                                    <span>Visit Project</span>
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Project 3: Mouseframe Electron -->
+                        <article class="project-card" data-category="gui">
+                            <div class="project-card-top">
+                                <div class="project-icon-box">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <span class="project-badge-category">Desktop App</span>
+                            </div>
+                            <h3 class="project-card-title">Mouseframe - Desktop Client</h3>
+                            <p class="project-card-desc">
+                                Cross-platform desktop counterpart built with Electron, allowing researchers to analyze gait digitized images offline with high-speed local caching and intuitive batch file ingestion.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">Electron</span>
+                                <span class="project-tech-tag">JavaScript/Ajax</span>
+                                <span class="project-tech-tag">Node.js</span>
+                                <span class="project-tech-tag">Requests</span>
+                            </div>
+                            <div class="project-card-links">
+                                <a href="https://github.com/bernas-estevam97/mouseframe/tree/dev" target="_blank" rel="noopener noreferrer" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Project 4: Data Treatment & Processing -->
+                        <article class="project-card" data-category="automation">
+                            <div class="project-card-top">
+                                <div class="project-icon-box">
+                                    <i class="fa-solid fa-bolt-lightning"></i>
+                                </div>
+                                <span class="project-badge-category">Automation & ETL</span>
+                            </div>
+                            <h3 class="project-card-title">High-Throughput Data Treatment</h3>
+                            <p class="project-card-desc">
+                                Automated data cleaning and ETL pipeline optimizing parsing speed via Python-Calamine, Parquet columnar storage, and multiprocessing to transform gigabytes of messy lab metrics into structured reports.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">Python-Calamine</span>
+                                <span class="project-tech-tag">Multiprocessing</span>
+                                <span class="project-tech-tag">PyArrow/Parquet</span>
+                                <span class="project-tech-tag">Pandas & NumPy</span>
+                                <span class="project-tech-tag">CLI Engine</span>
+                            </div>
+                            <div class="project-card-links">
+                                <a href="https://github.com/bernas-estevam97/data-cleaning-automation-scripts" target="_blank" rel="noopener noreferrer" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Project 5: MotoRater Dashboard -->
+                        <article class="project-card" data-category="gui">
+                            <div class="project-card-top">
+                                <div class="project-icon-box">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <span class="project-badge-category">Dashboards & GUI</span>
+                            </div>
+                            <h3 class="project-card-title">MotoRater Analysis Dashboard</h3>
+                            <p class="project-card-desc">
+                                Interactive Streamlit and Plotly analytical platform for longitudinal behavioral and kinematic data from the MotoRater gait analysis apparatus. Performs statistical evaluation with Pingouin and Statsmodels.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">Streamlit</span>
+                                <span class="project-tech-tag">Plotly</span>
+                                <span class="project-tech-tag">Pingouin</span>
+                                <span class="project-tech-tag">Statsmodels</span>
+                                <span class="project-tech-tag">Parquet ETL</span>
+                            </div>
+                            <div class="project-card-links">
+                                <a href="https://github.com/bernas-estevam97/MotoRater-Dashboard/tree/dev" target="_blank" rel="noopener noreferrer" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                                <a href="https://www.tse-systems.com/products/motorater/" target="_blank" rel="noopener noreferrer" class="project-link primary-link">
+                                    <span>Apparatus Spec</span>
+                                    <i class="fas fa-external-link"></i>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Project 6: CustomTkinter Application -->
+                        <article class="project-card" data-category="gui">
+                            <div class="project-card-top">
+                                <div class="project-icon-box">
+                                    <i class="fa-solid fa-desktop"></i>
+                                </div>
+                                <span class="project-badge-category">Desktop GUI</span>
+                            </div>
+                            <h3 class="project-card-title">CustomTkinter Workflow Stash</h3>
+                            <p class="project-card-desc">
+                                Modern native desktop utility built with CustomTkinter for offline automated data preparation, running longitudinal analysis workflows without requiring terminal commands.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">CustomTkinter</span>
+                                <span class="project-tech-tag">Python</span>
+                                <span class="project-tech-tag">Pandas & NumPy</span>
+                                <span class="project-tech-tag">Python-Calamine</span>
+                            </div>
+                            <div class="project-card-links">
+                                <a href="https://github.com/bernas-estevam97/GUI-App-Script-Stash/tree/dev" target="_blank" rel="noopener noreferrer" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Project 7: Flet Data Processing App -->
+                        <article class="project-card" data-category="automation">
+                            <div class="project-card-top">
+                                <div class="project-icon-box">
+                                    <i class="fa-solid fa-window-restore"></i>
+                                </div>
+                                <span class="project-badge-category">Automation & GUI</span>
+                            </div>
+                            <h3 class="project-card-title">Flet High-Speed Processor</h3>
+                            <p class="project-card-desc">
+                                Dynamic desktop user interface leveraging Flutter-based Python Flet, Asyncio, and Threading to execute high-volume data cleaning, Excel generation, and schema conversions.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">Flet (Flutter for Python)</span>
+                                <span class="project-tech-tag">Asyncio & Threading</span>
+                                <span class="project-tech-tag">Multiprocessing</span>
+                                <span class="project-tech-tag">Xlsxwriter & Calamine</span>
+                            </div>
+                            <div class="project-card-links">
+                                <a href="https://github.com/bernas-estevam97/Flet-Data-Processing" target="_blank" rel="noopener noreferrer" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <!-- Slider Dots Navigation -->
+                <div class="slider-dots" id="sliderDots" aria-label="Slider pagination"></div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker"><i class="fas fa-paper-plane"></i> Get In Touch</span>
+                    <h2 class="section-title">Let's Automate Your Workflow</h2>
+                    <p class="section-subtitle">Interested in collaborating, hiring, or solving a challenging data/automation problem? Reach out today.</p>
+                </div>
+
+                <div class="contact-layout">
+                    <!-- Contact Details Info -->
+                    <div class="contact-info-panel">
+                        <h3>Start a conversation.</h3>
+                        <p>
+                            Whether you need robust bioinformatics analysis, customized Python automation to save hundreds of hours, or an interactive research dashboard, I'm ready to help.
+                        </p>
+
+                        <div class="contact-details-list">
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                                <div class="contact-detail-text">
+                                    <span>Professional Network</span>
+                                    <a href="https://www.linkedin.com/in/bernas-estevam97/" target="_blank" rel="noopener noreferrer">
+                                        linkedin.com/in/bernas-estevam97
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="contact-detail-text">
+                                    <span>Open Source & Code</span>
+                                    <a href="https://github.com/bernas-estevam97" target="_blank" rel="noopener noreferrer">
+                                        github.com/bernas-estevam97
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="contact-detail-item">
+                                <div class="contact-detail-icon">
+                                    <i class="fas fa-location-dot"></i>
+                                </div>
+                                <div class="contact-detail-text">
+                                    <span>Location & Availability</span>
+                                    <strong>Portugal / Open to Worldwide Remote</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Card with Web3Forms + hCaptcha -->
+                    <div class="contact-form-card">
+                        <form id="contactForm" class="contact-form">
+                            <!-- Web3Forms Config Key -->
+                            <input type="hidden" name="access_key" value="d12cd701-006d-413e-93c4-4d60e0e7c870">
+                            <input type="checkbox" name="botcheck" style="display:none;">
+
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="e.g. Dr. Alex Morgan" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Your Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="e.g. alex.morgan@institution.org" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" class="form-textarea" rows="5" placeholder="Describe your project, data challenge, or inquiry..." required></textarea>
+                            </div>
+
+                            <div class="h-captcha" data-captcha="true"></div>
+
+                            <button type="submit" id="submitBtn" class="btn btn-primary form-submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Send Message</span>
+                            </button>
+
+                            <p id="formResult" class="form-result"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="project-grid">
-                
-                <div class="project-card">
-                    <div class="card-header">
-                        <i class="fa-solid fa-dna"></i>
-                        <h4>PolyQ Database</h4>
-                    </div>
-                    <p>A django application connected to a Microsoft SQL server database that has valid and updated information on the 9 existant polyglutamine diseases. From common knowledge about these diseases to their more complex genetic and molecular mechanisms.</p>
-                    <div class="card-tags">
-                        <span>Python/Django</span>
-                        <span>MSSQL</span>
-                        <span>JavaScript</span>
-                    </div>
-                    <a href="https://polyq.pt/" target="_blank" class="card-link">Visit PolyQ <i class="fas fa-arrow-right"></i></a>
-                </div>
+            <div class="footer-content">
+                <a href="#hero" class="logo">
+                    <span class="logo-symbol">B</span>
+                    <span class="logo-text">Bernardo<span>.</span></span>
+                </a>
 
-                <div class="project-card">
-                    <div class="card-header">
-                        <span class="mouse-icon">&#128045;</span>
-                        <h4>Mouseframe - Web Application</h4>
-                    </div>
-                    <p>A web application (with desktop app available) that accepts digitized images of walking pattern footprints from mice. Walking footprint analysis from the animals is important since it returns several measurements of interest for research. Click below for more information.</p>
-                    <div class="card-tags">
-                        <span>Python/Django</span>
-                        <span>JavaScript/Ajax</span>
-                        <span>SQLite</span>
-                        <span>Auth/Google ReCaptcha V3</span>
-                    </div>
-                    <a href="https://mouseframe.pt/" target="_blank" class="card-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
+                <p class="footer-copy">
+                    &copy; <span id="year"></span> Bernardo Estevam. All rights reserved.
+                </p>
 
-                <div class="project-card">
-                    <div class="card-header">
-                        <span class="mouse-icon">&#128045;</span>
-                        <h4>Mouseframe - Desktop App (Eletron)</h4>
-                    </div>
-                    <p>A web application (with desktop app available) that accepts digitized images of walking pattern footprints from mice. Walking footprint analysis from the animals is important since it returns several measurements of interest for research. Click below for more information.</p>
-                    <div class="card-tags">
-                        <span></span>
-                        <span>JavaScript/Ajax</span>
-                        <span>Eletron</span>
-                        <span>Requests</span>
-                    </div>
-                    <a href="https://github.com/bernas-estevam97/mouseframe/tree/dev" target="_blank" class="card-link">View Project <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="project-card">
-                    <div class="card-header">
-                        <i class="fas fa-chart-line"></i>
-                        <h4>Data treatment and processing</h4>
-                    </div>
-                    <p>Automating scripts that clean, transform, and organize all important data in one single excel file or other formats for user.</p>
-                    <div class="card-tags">
-                        <span>Python-Calamine</span>
-                        <span>Multiprocessing</span>
-                        <span>Pandas & Numpy</span>
-                        <span>CLI</span>
-                        <span>Openpyxl & xlsxwriter</span>
-                        <span>Pyarrow (parquet files)</span>
-                    </div>
-                    <a href="https://github.com/bernas-estevam97/data-cleaning-automation-scripts" target="_blank" class="card-link">View Code <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="project-card">
-                    <div class="card-header">
-                        <i class="fas fa-dashboard"></i>
-                        <h4>MotoRater Data analysis dashboard</h4>
-                    </div>
-                    <p>Interactive dashboard for analyzing MotoRater data with real-time updates and visualizations. Longitudinal analysis of user data from resultant datasets from filtering and processing workflows of the MotoRater</p>
-                    <div class="card-tags">
-                        <span>Streamlit</span>
-                        <span>Plotly</span>
-                        <span>Pandas & Numpy</span>
-                        <span>Pingouin</span>
-                        <span>Statsmodels</span>
-                        <span>Openpyxl & Python-calamine</span>
-                        <span>Pyarrow (parquet files)</span>
-                    </div>
-                    <a href="https://github.com/bernas-estevam97/MotoRater-Dashboard/tree/dev" target="_blank" class="card-link">View Code <i class="fas fa-arrow-right"></i></a><br><br>
-                    <a href="https://www.tse-systems.com/products/motorater/?utm_term=gait%20analysis%20system&utm_campaign=Motorater+New+Website&utm_source=adwords&utm_medium=ppc&hsa_acc=6040599756&hsa_cam=21174593191&hsa_grp=166477826848&hsa_ad=696155602226&hsa_src=g&hsa_tgt=kwd-296648038253&hsa_kw=gait%20analysis%20system&hsa_mt=b&hsa_net=adwords&hsa_ver=3&gad_source=1&gad_campaignid=21174593191&gbraid=0AAAAADviuB6eAWgjyK04zfLyGpTroPzQS" target="_blank" class="card-link">View MotoRater apparatus page <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="project-card">
-                    <div class="card-header">
-                        <i class="fas fa-tv"></i>
-                        <h4>Customtkinter Application</h4>
-                    </div>
-                    <p>Interactive dashboard for analyzing MotoRater data with real-time updates and visualizations. Longitudinal analysis of user data from resultant datasets from filtering and processing workflows of the MotoRater</p>
-                    <div class="card-tags">
-                        <span>Customtkinter</span>
-                        <span>Pandas & Numpy</span>
-                        <span>Openpyxl & Python-calamine</span>
-                    </div>
-                    <a href="https://github.com/bernas-estevam97/GUI-App-Script-Stash/tree/dev" target="_blank" class="card-link">View Code <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="project-card">
-                    <div class="card-header">
-                        <i class="fa-regular fa-window-restore"></i>
-                        <h4>Flet application for data processing</h4>
-                    </div>
-                    <p>Flet Application that makes use of previous python scripts for data cleaning, filtering and organization in a friendly, professional, dynamic user interface.</p>
-                    <div class="card-tags">
-                        <span>Flet v0.84</span>
-                        <span>Multiprocessing</span>
-                        <span>Asyncio</span>
-                        <span>Threading</span>
-                        <span>Pandas & Numpy</span>
-                        <span>Openpyxl & Python-calamine</span>
-                        <span>Xlsxwriter</span>
-                    </div>
-                    <a href="https://github.com/bernas-estevam97/Flet-Data-Processing" target="_blank" class="card-link">View Code <i class="fas fa-arrow-right"></i></a>
+                <div class="footer-socials">
+                    <a href="https://github.com/bernas-estevam97" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/bernas-estevam97/" target="_blank" rel="noopener noreferrer" class="btn-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section id="contact" class="bg-dark section-padding">
-    <div class="container contact-wrapper">
-        <h2>Let's automate your workflow.</h2>
-        <p>Interested in collaborating or have a data problem to solve?</p>
-
-            <form id="contactForm" class="contact-form">
-    <input type="hidden" name="access_key" value="d12cd701-006d-413e-93c4-4d60e0e7c870"> 
-    <input type="checkbox" name="botcheck" style="display:none;"> 
-    <input type="text" name="name" placeholder="Your Name" required> 
-    <input type="email" name="email" placeholder="Your Email" required> 
-    <textarea name="message" placeholder="Your Message" rows="5" required></textarea> 
-    <div class="h-captcha" data-captcha="true"></div> 
-    <button type="submit" class="btn-primary"> <i class="fas fa-paper-plane"></i> Send Message </button> 
-    <p id="formResult"></p>
-</form>
-
-    <div class="social-links">
-            <a href="https://www.linkedin.com/in/bernas-estevam97/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            
-            <a href="https://github.com/bernas-estevam97" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-        </div>
-        
-    </div>
-    </section>
-
-    <footer>
-        <p>&copy; <span id="year"></span> Bernardo Estevam Web Portfolio.</p>
     </footer>
 
+    <!-- Back to top floating button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
-    <script src="https://web3forms.com/client/script.js" async defer>
-</script>
+    <script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
-</html>
+</html>
