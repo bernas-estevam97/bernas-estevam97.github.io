@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update Counter
             if (sliderCounter) {
                 const currentDisplay = String(currentIndex + 1).padStart(2, '0');
-                const totalDisplay = String(visibleCards.length).padStart(2, '0');
+                const totalDisplay = String(visibleCards.length - 1).padStart(2, '0');
                 sliderCounter.textContent = `${currentDisplay} / ${totalDisplay}`;
             }
 
@@ -316,7 +316,11 @@ document.addEventListener('DOMContentLoaded', () => {
             viewSliderBtn.addEventListener('click', () => {
                 viewSliderBtn.classList.add('active');
                 viewGridBtn.classList.remove('active');
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) projectsSection.classList.remove('is-grid-mode');
                 projectsContainer.classList.remove('grid-mode');
+                if (sliderNav) sliderNav.style.display = 'flex';
+                if (sliderDots) sliderDots.style.display = 'flex';
                 renderDots();
                 updateSliderPosition();
             });
@@ -324,8 +328,12 @@ document.addEventListener('DOMContentLoaded', () => {
             viewGridBtn.addEventListener('click', () => {
                 viewGridBtn.classList.add('active');
                 viewSliderBtn.classList.remove('active');
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) projectsSection.classList.add('is-grid-mode');
                 projectsContainer.classList.add('grid-mode');
                 sliderTrack.style.transform = 'none';
+                if (sliderNav) sliderNav.style.display = 'none';
+                if (sliderDots) sliderDots.style.display = 'none';
             });
         }
 

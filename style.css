@@ -741,6 +741,157 @@ img {
     font-weight: 500;
 }
 
+/* Author Branding Header in About */
+.about-author-header {
+    margin-bottom: 22px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.about-author-name {
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.about-author-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary);
+    display: inline-block;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   Career & Education Timeline (Journey)
+   ========================================================================== */
+
+.journey-wrapper {
+    margin-top: 55px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.journey-column {
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    padding: 36px 30px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.journey-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.journey-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.journey-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Timeline Track & Cards */
+.timeline {
+    position: relative;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 7px;
+    width: 2px;
+    background: var(--border-medium);
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg-surface);
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.timeline-content {
+    background: var(--bg-surface-elevated);
+    padding: 20px 22px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    transition: all var(--transition-fast);
+}
+
+.timeline-content:hover {
+    border-color: var(--border-active);
+    transform: translateX(4px);
+}
+
+.timeline-date {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    margin-bottom: 8px;
+}
+
+.timeline-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.timeline-institution {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.timeline-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
 /* ==========================================================================
    Tech Stack Section
    ========================================================================== */
@@ -1114,9 +1265,13 @@ img {
     width: 100%;
 }
 
-.projects-container.grid-mode .slider-nav,
-.projects-container.grid-mode .slider-dots {
-    display: none;
+/* Hide slider navigation controls and dots when in grid mode */
+#projects.is-grid-mode #sliderNav,
+#projects.is-grid-mode #sliderDots,
+.is-grid-mode .slider-nav,
+.is-grid-mode .slider-dots,
+.projects-container.grid-mode ~ #sliderDots {
+    display: none !important;
 }
 
 /* ==========================================================================
@@ -1372,6 +1527,10 @@ img {
     }
 
     .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .journey-wrapper {
         grid-template-columns: 1fr;
     }
 
