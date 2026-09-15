@@ -26,6 +26,4 @@ This portfolio serves as a consolidation of my professional journey. Inside the 
 
 I am always open to new opportunities, collaborations, or just a quick chat!
 
-Feel free to contact me for any inquiries through the contact section on my website, or reach out directly:
-
-- **Portfolio:** [bernas-estevam97.github.io](https://bernas-estevam97.github.io/)
+Feel free to contact me for any inquiries through the contact section on my website.
