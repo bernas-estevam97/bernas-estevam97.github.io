@@ -6,29 +6,26 @@ Welcome to the repository for my personal web portfolio!
 
 > **Check out the live website here:** [bernas-estevam97.github.io](https://bernas-estevam97.github.io/)
 
-
-##📖 About
+## 📖 About
 
 This portfolio serves as a consolidation of my professional journey. Inside the live site, you will find:
 
--🧑‍💻 Basic Information & Background
+- 🧑‍💻 Basic Information & Background
+- 🛠️ Skills & Expertise
+- 🚀 Featured Projects
+- 📬 Contact Information
 
--🛠️ Skills & Expertise
+## 💻 Built With
 
--🚀 Featured Projects
+*(Optional: List the technologies you used to build your portfolio here. For example:)*
 
--📬 Contact Information
+- HTML5 & CSS3
+- JavaScript
 
-##💻 Built With
-(Optional: List the technologies you used to build your portfolio here. For example:)
+## 📬 Contact Me
 
--HTML5 & CSS3
-
--JavaScript
-
-##📬 Contact Me
 I am always open to new opportunities, collaborations, or just a quick chat!
 
 Feel free to contact me for any inquiries through the contact section on my website, or reach out directly:
 
-Portfolio: bernas-estevam97.github.io
+- **Portfolio:** [bernas-estevam97.github.io](https://bernas-estevam97.github.io/)
