@@ -1515,6 +1515,216 @@ img {
 }
 
 /* ==========================================================================
+   Form Privacy Notice (GDPR compliance) & Footer Meta
+   ========================================================================== */
+
+.form-privacy-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+
+.privacy-notice-icon {
+    color: var(--primary);
+    font-size: 1.05rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.form-privacy-notice p {
+    margin: 0;
+}
+
+.privacy-link,
+.footer-privacy-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--transition-fast);
+}
+
+.privacy-link:hover,
+.footer-privacy-link:hover {
+    color: var(--accent);
+}
+
+.footer-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-privacy-link {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Privacy Policy Page Styles
+   ========================================================================== */
+
+.privacy-page {
+    padding-top: 130px;
+    padding-bottom: 90px;
+    min-height: 100vh;
+}
+
+.privacy-back-nav {
+    margin-bottom: 28px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    transition: all var(--transition-fast);
+}
+
+.back-link:hover {
+    color: var(--primary);
+    border-color: var(--border-active);
+    transform: translateX(-3px);
+}
+
+.privacy-header {
+    margin-bottom: 40px;
+}
+
+.privacy-header h1 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.privacy-header p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 760px;
+    line-height: 1.7;
+}
+
+.privacy-updated-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-surface-elevated);
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    margin-top: 14px;
+}
+
+.privacy-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    padding: 48px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.privacy-section {
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.privacy-section:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.privacy-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+}
+
+.privacy-section-title i {
+    color: var(--primary);
+    font-size: 1.15rem;
+}
+
+.privacy-section p {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.75;
+    margin-bottom: 14px;
+}
+
+.privacy-section p:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-list {
+    list-style: none;
+    margin: 14px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.privacy-list li {
+    position: relative;
+    padding-left: 26px;
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    line-height: 1.65;
+}
+
+.privacy-list li::before {
+    content: '\f058';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.privacy-highlight-box {
+    background: var(--primary-light);
+    border: 1px solid var(--border-active);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    margin-top: 14px;
+}
+
+.privacy-highlight-box p {
+    color: var(--text-primary);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* ==========================================================================
    Mobile & Responsive Media Queries
    ========================================================================== */
 
