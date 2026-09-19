@@ -1,3 +1,9 @@
+// Clean URL: Strip '/index.html' from browser address bar for clean presentation
+if (window.location.pathname.endsWith('/index.html')) {
+    const cleanPath = window.location.pathname.replace(/\/index\.html$/, '/') + window.location.search + window.location.hash;
+    window.history.replaceState(null, '', cleanPath);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     /* ==========================================================================
        1. Theme Switcher (Dark / Light Mode)
