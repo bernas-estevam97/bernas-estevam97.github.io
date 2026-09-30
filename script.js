@@ -234,8 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update Counter
             if (sliderCounter) {
+                const totalSlides = visibleCards.length > 0 ? (maxIdx + 1) : 0;
                 const currentDisplay = String(currentIndex + 1).padStart(2, '0');
-                const totalDisplay = String(visibleCards.length - 1).padStart(2, '0');
+                const totalDisplay = String(totalSlides).padStart(2, '0');
                 sliderCounter.textContent = `${currentDisplay} / ${totalDisplay}`;
             }
 
