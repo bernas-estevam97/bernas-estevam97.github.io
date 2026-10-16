@@ -1,7 +1,12 @@
 // Clean URL: Strip '/index.html' from browser address bar for clean presentation
-if (window.location.pathname.endsWith('/index.html')) {
+// Skipped on file:// (opening index.html directly), where replaceState throws and would stop this whole script.
+if (window.location.protocol.startsWith('http') && window.location.pathname.endsWith('/index.html')) {
     const cleanPath = window.location.pathname.replace(/\/index\.html$/, '/') + window.location.search + window.location.hash;
-    window.history.replaceState(null, '', cleanPath);
+    try {
+        window.history.replaceState(null, '', cleanPath);
+    } catch (e) {
+        // Cosmetic only; never block the rest of the page.
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
