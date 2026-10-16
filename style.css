@@ -1304,12 +1304,17 @@ button {
         padding: 22px;
     }
 
-    /* Beside the portrait on phones, the eyebrow reads better as plain text */
+    /* Beside the portrait on phones the eyebrow wraps to two lines,
+       so the pill becomes a soft rounded box */
     .hero-eyebrow {
-        padding: 0;
-        font-size: 0.95rem;
-        background: none;
-        border: 0;
+        padding: 8px 14px;
+        line-height: 1.45;
+        border-radius: 14px;
+    }
+
+    /* Explicit line break so the box hugs the text instead of filling the row */
+    .hero-eyebrow .nowrap {
+        display: block;
     }
 
     .doc {
