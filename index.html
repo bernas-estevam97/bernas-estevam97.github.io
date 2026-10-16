@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bernardo Estevam | PhD Candidate, Biomedical Sciences</title>
-    <meta name="description" content="Bernardo Estevam, PhD candidate in Biomedical Sciences at the University of Algarve. Kinematic motor analysis, tracking algorithms and research software for behavioural and imaging data.">
+    <meta name="description" content="Bernardo Estevam, PhD candidate in Biomedical Sciences at the University of Algarve. Kinematic analysis, animal tracking and research software for neuroscience data.">
     <meta property="og:type" content="profile">
     <meta property="og:title" content="Bernardo Estevam | PhD Candidate, Biomedical Sciences">
-    <meta property="og:description" content="Kinematic motor analysis, tracking algorithms and research software for behavioural and imaging data. University of Algarve.">
+    <meta property="og:description" content="Kinematic analysis, animal tracking and research software for neuroscience data. University of Algarve.">
 
-    <!-- Apply saved or system theme before paint to avoid a flash -->
+    <!-- Theme before first paint, and a hook so reveal animations only hide content when JS runs -->
     <script>
+        document.documentElement.classList.add('js');
         try {
             document.documentElement.dataset.theme = localStorage.getItem('theme') ||
                 (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -19,7 +20,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Geist:wght@400..600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 
     <link rel="shortcut icon" href="images/icon.ico">
@@ -28,283 +29,318 @@
 <body>
     <a href="#main" class="skip-link">Skip to content</a>
 
-    <div class="page">
-        <aside class="profile">
-            <img src="images/bernardo.png" alt="Portrait of Bernardo Estevam" class="profile-photo" width="300" height="300">
+    <header class="site-header" id="siteHeader">
+        <div class="container nav">
+            <a href="#top" class="wordmark">Bernardo Estevam</a>
 
-            <div class="profile-id">
-                <p class="profile-name">Bernardo Estevam</p>
-                <p class="profile-role">PhD candidate, Biomedical Sciences</p>
-                <p class="profile-affiliation">University of Algarve<br>Faro, Portugal</p>
-            </div>
-
-            <nav class="toc" aria-label="Sections">
-                <ul>
+            <nav aria-label="Sections">
+                <ul class="nav-links" id="navLinks">
                     <li><a href="#about">About</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#software">Research software</a></li>
-                    <li><a href="#methods">Methods &amp; tools</a></li>
+                    <li><a href="#background">Background</a></li>
+                    <li><a href="#software">Software</a></li>
+                    <li><a href="#methods">Methods</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
 
-            <ul class="profile-links">
-                <li>
-                    <a href="https://github.com/bernas-estevam97" target="_blank" rel="noopener noreferrer">
-                        <i class="ph ph-github-logo" aria-hidden="true"></i>GitHub
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/bernas-estevam97/" target="_blank" rel="noopener noreferrer">
-                        <i class="ph ph-linkedin-logo" aria-hidden="true"></i>LinkedIn
-                    </a>
-                </li>
-                <li>
-                    <a href="#contact"><i class="ph ph-envelope-simple" aria-hidden="true"></i>Send a message</a>
-                </li>
-            </ul>
+            <div class="nav-actions">
+                <button type="button" id="themeToggle" class="icon-btn" aria-label="Switch to dark theme">
+                    <i class="ph ph-circle-half" aria-hidden="true"></i>
+                </button>
+                <button type="button" id="menuToggle" class="icon-btn menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                    <i class="ph ph-list" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-            <button type="button" id="themeToggle" class="theme-toggle" aria-pressed="false">
-                <i class="ph ph-circle-half" aria-hidden="true"></i>
-                <span class="theme-toggle-label">Dark theme</span>
-            </button>
-        </aside>
+    <main id="main">
+        <!-- Hero -->
+        <section class="hero" id="top">
+            <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="hero-eyebrow hero-in" style="--i: 0">PhD candidate, University of Algarve</p>
+                    <h1 class="hero-title hero-in" style="--i: 1">Quantifying movement in neuroscience.</h1>
+                    <p class="hero-sub hero-in" style="--i: 2">I build tools for kinematic analysis, animal tracking and neuroscience data while completing my PhD in Biomedical Sciences.</p>
+                    <div class="hero-actions hero-in" style="--i: 3">
+                        <a href="#software" class="btn btn-primary">Research software</a>
+                        <a href="#contact" class="btn btn-ghost">Contact</a>
+                    </div>
+                </div>
 
-        <main id="main" class="content">
-            <!-- About -->
-            <section id="about" class="section section-intro">
-                <h1 class="lead">
-                    I study motor behaviour in rodent models through kinematic analysis, and write the software that turns raw tracking and imaging data into reproducible results.
-                </h1>
+                <div class="hero-portrait hero-in" style="--i: 2">
+                    <img src="images/bernardo.png" alt="Portrait of Bernardo Estevam" width="300" height="300">
+                </div>
+            </div>
+        </section>
 
-                <div class="prose">
-                    <p>
-                        I am a PhD candidate in Biomedical Sciences at the Faculty of Medicine and Biomedical Sciences, University of Algarve. My background spans biomedical sciences, neuroscience and software engineering, and my doctoral work focuses on kinematic motor analysis, tracking algorithms, biomechanical modelling and machine learning.
+        <!-- About -->
+        <section id="about" class="section">
+            <div class="container about-grid">
+                <div class="about-text reveal">
+                    <h2 class="section-title">About</h2>
+                    <p class="about-lead">
+                        I study motor behaviour in rodent models through kinematic analysis, and write the software that turns raw tracking and imaging data into reproducible results.
                     </p>
                     <p>
-                        Alongside the research, I develop open-source tools for gait analysis, calcium imaging and behavioural tracking, most of them built at the Algarve Biomedical Center to replace slow manual analysis steps.
+                        My doctoral work at the Faculty of Medicine and Biomedical Sciences focuses on kinematic motor analysis, tracking algorithms, biomechanical modelling and machine learning. Before the PhD, I developed research applications at the Algarve Biomedical Center that replaced slow manual analysis steps.
                     </p>
                 </div>
 
-                <p class="availability">
-                    I am currently focused on my doctoral research and am not looking for new positions. I welcome research collaborations, questions about my tools, and the occasional small side project.
-                </p>
+                <aside class="about-side reveal" style="--i: 1">
+                    <div class="status-card">
+                        <p class="status-label"><span class="status-dot" aria-hidden="true"></span>Currently</p>
+                        <p>Focused on my doctoral research and not looking for new positions. Open to research collaborations, questions about my tools and occasional small side projects.</p>
+                    </div>
 
-                <h2 class="subheading">Research interests</h2>
-                <ul class="interests">
-                    <li>Kinematic and gait analysis in rodent models</li>
-                    <li>Animal tracking and computer vision</li>
-                    <li>Biomechanical modelling</li>
-                    <li>Machine learning for behavioural data</li>
-                    <li>Neurodegenerative disease, including polyglutamine disorders</li>
-                    <li>Reproducible analysis pipelines</li>
-                </ul>
-            </section>
+                    <h3 class="side-heading">Research interests</h3>
+                    <ul class="chips">
+                        <li>Kinematics &amp; gait analysis</li>
+                        <li>Animal tracking</li>
+                        <li>Computer vision</li>
+                        <li>Biomechanical modelling</li>
+                        <li>Machine learning</li>
+                        <li>Neurodegenerative disease</li>
+                        <li>Reproducible pipelines</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
 
-            <!-- Education -->
-            <section id="education" class="section">
-                <h2 class="section-title">Education</h2>
-                <ol class="cv-list">
-                    <li class="cv-entry">
-                        <span class="cv-date">2024 &ndash; present</span>
-                        <div>
-                            <h3 class="cv-title">PhD in Biomedical Sciences</h3>
-                            <p class="cv-place">University of Algarve, Faculty of Medicine and Biomedical Sciences, Faro</p>
-                            <p class="cv-desc">Kinematic motor analysis, tracking algorithms, biomechanical modelling, automation and machine learning.</p>
-                        </div>
-                    </li>
-                    <li class="cv-entry">
-                        <span class="cv-date">2020 &ndash; 2021</span>
-                        <div>
-                            <h3 class="cv-title">MSc in Biomedical Sciences</h3>
-                            <p class="cv-place">University of Algarve, Faculty of Medicine and Biomedical Sciences, Faro</p>
-                            <p class="cv-desc">High-throughput genomics, statistical analysis, Python data engineering and neurodegenerative disease research.</p>
-                        </div>
-                    </li>
-                    <li class="cv-entry">
-                        <span class="cv-date">2016 &ndash; 2020</span>
-                        <div>
-                            <h3 class="cv-title">BSc in Biomedical Sciences</h3>
-                            <p class="cv-place">University of Algarve, Faculty of Science and Technology, Faro</p>
-                            <p class="cv-desc">Cellular and molecular biology, genetics, experimental neuroscience methods and quantitative data collection.</p>
-                        </div>
-                    </li>
-                </ol>
-            </section>
+        <!-- Education & experience -->
+        <section id="background" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title reveal">Background</h2>
 
-            <!-- Experience -->
-            <section id="experience" class="section">
-                <h2 class="section-title">Research experience</h2>
-                <ol class="cv-list">
-                    <li class="cv-entry">
-                        <span class="cv-date">2022 &ndash; 2023</span>
-                        <div>
-                            <h3 class="cv-title">Research Fellow, Tracking &amp; Analysis</h3>
-                            <p class="cv-place">Algarve Biomedical Center Research Institute (ABC-RI)</p>
-                            <p class="cv-desc">Optimised longitudinal kinematic and behavioural analyses and tracking algorithms; built automation processes and data pipelines.</p>
-                        </div>
-                    </li>
-                    <li class="cv-entry">
-                        <span class="cv-date">2021 &ndash; 2022</span>
-                        <div>
-                            <h3 class="cv-title">Bioinformatics &amp; Automation Developer</h3>
-                            <p class="cv-place">Algarve Biomedical Center Research Institute (ABC-RI)</p>
-                            <p class="cv-desc">Developed applications that replaced outdated laboratory workflows and improved data processing efficiency, including Mouseframe.</p>
-                        </div>
-                    </li>
-                    <li class="cv-entry">
-                        <span class="cv-date">2020 &ndash; 2021</span>
-                        <div>
-                            <h3 class="cv-title">Full-Stack Developer</h3>
-                            <p class="cv-place">University of Algarve, Faculty of Medicine and Biomedical Sciences</p>
-                            <p class="cv-desc">Developed full-stack web applications for one of the university's research groups (ABC-RI).</p>
-                        </div>
-                    </li>
-                </ol>
-            </section>
+                <div class="timelines">
+                    <div class="timeline-col reveal">
+                        <h3 class="timeline-heading"><i class="ph ph-graduation-cap" aria-hidden="true"></i>Education</h3>
+                        <ol class="timeline">
+                            <li class="timeline-item">
+                                <span class="timeline-date">2024 - present</span>
+                                <h4>PhD in Biomedical Sciences</h4>
+                                <p class="timeline-place">University of Algarve, Faculty of Medicine and Biomedical Sciences</p>
+                                <p>Kinematic motor analysis, tracking algorithms, biomechanical modelling, automation and machine learning.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="timeline-date">2020 - 2021</span>
+                                <h4>MSc in Biomedical Sciences</h4>
+                                <p class="timeline-place">University of Algarve, Faculty of Medicine and Biomedical Sciences</p>
+                                <p>High-throughput genomics, statistical analysis, Python data engineering and neurodegenerative disease research.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="timeline-date">2016 - 2020</span>
+                                <h4>BSc in Biomedical Sciences</h4>
+                                <p class="timeline-place">University of Algarve, Faculty of Science and Technology</p>
+                                <p>Cellular and molecular biology, genetics, experimental neuroscience methods and quantitative data collection.</p>
+                            </li>
+                        </ol>
+                    </div>
 
-            <!-- Research software -->
-            <section id="software" class="section">
-                <h2 class="section-title">Research software</h2>
-                <p class="section-note">Tools and databases I have built for neuroscience and biomedical research. Source code is on GitHub unless noted.</p>
+                    <div class="timeline-col reveal" style="--i: 1">
+                        <h3 class="timeline-heading"><i class="ph ph-flask" aria-hidden="true"></i>Research experience</h3>
+                        <ol class="timeline">
+                            <li class="timeline-item">
+                                <span class="timeline-date">2022 - 2023</span>
+                                <h4>Research Fellow, Tracking &amp; Analysis</h4>
+                                <p class="timeline-place">Algarve Biomedical Center Research Institute (ABC-RI)</p>
+                                <p>Optimised longitudinal kinematic and behavioural analyses and tracking algorithms; built automation processes and data pipelines.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="timeline-date">2021 - 2022</span>
+                                <h4>Bioinformatics &amp; Automation Developer</h4>
+                                <p class="timeline-place">Algarve Biomedical Center Research Institute (ABC-RI)</p>
+                                <p>Developed applications that replaced outdated laboratory workflows and improved data processing, including Mouseframe.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="timeline-date">2020 - 2021</span>
+                                <h4>Full-Stack Developer</h4>
+                                <p class="timeline-place">University of Algarve, Faculty of Medicine and Biomedical Sciences</p>
+                                <p>Developed full-stack web applications for one of the university's research groups (ABC-RI).</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <div class="filters" role="group" aria-label="Filter by type">
+        <!-- Research software -->
+        <section id="software" class="section">
+            <div class="container">
+                <div class="software-head reveal">
+                    <h2 class="section-title">Research software</h2>
+                    <p class="section-sub">Tools and databases I have built for neuroscience and biomedical research.</p>
+                </div>
+
+                <div class="filters reveal" role="group" aria-label="Filter by type">
                     <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All</button>
                     <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web &amp; databases</button>
                     <button type="button" class="filter-btn" data-filter="automation" aria-pressed="false">Data processing</button>
                     <button type="button" class="filter-btn" data-filter="gui" aria-pressed="false">Desktop &amp; dashboards</button>
                 </div>
 
-                <div class="project-list">
-                    <article class="project" data-category="web">
-                        <div class="project-head">
+                <div class="bento" id="bento">
+                    <article class="project project-featured span-8 rows-2 reveal" data-category="web">
+                        <a class="project-media project-shot" href="https://polyq.pt/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                            <img src="images/projects/site-polyq.jpg" alt="" width="1280" height="800" loading="lazy">
+                        </a>
+                        <div class="project-body">
+                            <span class="tag">Web &amp; database</span>
                             <h3 class="project-title">PolyQ Database</h3>
-                            <span class="tag tag-blue">Web &amp; database</span>
+                            <p class="project-desc">A Django web application backed by Microsoft SQL Server that hosts clinical and research data for the nine known polyglutamine neurodegenerative disorders, from molecular pathology to disease genetics.</p>
+                            <ul class="tech"><li>Python/Django</li><li>MSSQL</li><li>JavaScript</li></ul>
+                            <a class="project-link" href="https://polyq.pt/" target="_blank" rel="noopener noreferrer">Visit polyq.pt<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                         </div>
-                        <p class="project-desc">A Django web application backed by Microsoft SQL Server that hosts clinical and research data for the nine known polyglutamine neurodegenerative disorders, from molecular pathology to disease genetics.</p>
-                        <ul class="tech"><li>Python/Django</li><li>MSSQL</li><li>JavaScript</li></ul>
-                        <a class="project-link" href="https://polyq.pt/" target="_blank" rel="noopener noreferrer">polyq.pt<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </article>
 
-                    <article class="project" data-category="web">
-                        <div class="project-head">
+                    <article class="project span-4 reveal" style="--i: 1" data-category="web">
+                        <div class="project-media project-icon" aria-hidden="true"><i class="ph ph-paw-print"></i></div>
+                        <div class="project-body">
+                            <span class="tag">Web application</span>
                             <h3 class="project-title">Mouseframe</h3>
-                            <span class="tag tag-blue">Web application</span>
+                            <p class="project-desc">Processes digitised images of rodent footprint patterns and extracts quantitative gait measurements for locomotion research.</p>
+                            <ul class="tech"><li>Django</li><li>JavaScript</li><li>SQLite</li></ul>
+                            <a class="project-link" href="https://mouseframe.pt/" target="_blank" rel="noopener noreferrer">Visit mouseframe.pt<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                         </div>
-                        <p class="project-desc">Processes digitised images of rodent walking footprint patterns and extracts quantitative gait measurements for neuroscience and locomotion research.</p>
-                        <ul class="tech"><li>Python/Django</li><li>JavaScript/Ajax</li><li>SQLite</li><li>reCAPTCHA v3</li></ul>
-                        <a class="project-link" href="https://mouseframe.pt/" target="_blank" rel="noopener noreferrer">mouseframe.pt<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </article>
 
-                    <article class="project" data-category="gui">
-                        <div class="project-head">
+                    <article class="project span-4 reveal" style="--i: 2" data-category="gui">
+                        <div class="project-media project-icon" aria-hidden="true"><i class="ph ph-desktop"></i></div>
+                        <div class="project-body">
+                            <span class="tag">Desktop app</span>
                             <h3 class="project-title">Mouseframe Desktop</h3>
-                            <span class="tag tag-yellow">Desktop app</span>
+                            <p class="project-desc">Electron counterpart to Mouseframe for offline gait image analysis with local caching and batch import.</p>
+                            <ul class="tech"><li>Electron</li><li>Node.js</li></ul>
+                            <a class="project-link" href="https://github.com/bernas-estevam97/mouseframe/tree/dev" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                         </div>
-                        <p class="project-desc">Cross-platform Electron counterpart to Mouseframe, letting researchers analyse digitised gait images offline with local caching and batch file import.</p>
-                        <ul class="tech"><li>Electron</li><li>Node.js</li><li>JavaScript</li></ul>
-                        <a class="project-link" href="https://github.com/bernas-estevam97/mouseframe/tree/dev" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </article>
 
-                    <article class="project" data-category="automation">
-                        <div class="project-head">
+                    <article class="project span-6 reveal" data-category="automation">
+                        <div class="project-media project-icon" aria-hidden="true"><i class="ph ph-wave-sine"></i></div>
+                        <div class="project-body">
+                            <span class="tag">Data analysis</span>
                             <h3 class="project-title">Calcium Signal Peak Analyzer</h3>
-                            <span class="tag tag-green">Data analysis</span>
+                            <p class="project-desc">Baseline normalisation, peak detection, sub-sample kinetic parameter extraction and reporting for calcium imaging and fluorescence transients (F(t) and &Delta;F/F<sub>0</sub>).</p>
+                            <ul class="tech"><li>Streamlit</li><li>SciPy</li><li>Savitzky-Golay</li><li>Vega-Altair</li></ul>
+                            <a class="project-link" href="https://github.com/bernas-estevam97/calcium-peak-analysis" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                         </div>
-                        <p class="project-desc">Interactive application for baseline normalisation, peak detection, sub-sample kinetic parameter extraction and reporting of calcium imaging and fluorescence transients (F(t) and &Delta;F/F<sub>0</sub>).</p>
-                        <ul class="tech"><li>Streamlit</li><li>SciPy</li><li>Savitzky&ndash;Golay</li><li>NumPy</li><li>Pandas</li><li>Vega-Altair</li></ul>
-                        <a class="project-link" href="https://github.com/bernas-estevam97/calcium-peak-analysis" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </article>
 
-                    <article class="project" data-category="gui">
-                        <div class="project-head">
+                    <article class="project span-6 reveal" style="--i: 1" data-category="gui">
+                        <div class="project-media project-icon" aria-hidden="true"><i class="ph ph-chart-line-up"></i></div>
+                        <div class="project-body">
+                            <span class="tag">Dashboard</span>
                             <h3 class="project-title">MotoRater Analysis Dashboard</h3>
-                            <span class="tag tag-yellow">Dashboard</span>
-                        </div>
-                        <p class="project-desc">Streamlit and Plotly platform for longitudinal behavioural and kinematic data from the MotoRater gait analysis apparatus, with statistical evaluation in Pingouin and Statsmodels.</p>
-                        <ul class="tech"><li>Streamlit</li><li>Plotly</li><li>Pingouin</li><li>Statsmodels</li><li>Parquet</li></ul>
-                        <div class="project-links">
-                            <a class="project-link" href="https://github.com/bernas-estevam97/MotoRater-Dashboard/tree/dev" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-                            <a class="project-link" href="https://www.tse-systems.com/products/motorater/" target="_blank" rel="noopener noreferrer">About MotoRater<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+                            <p class="project-desc">Longitudinal behavioural and kinematic analysis for the MotoRater gait apparatus, with statistics in Pingouin and Statsmodels.</p>
+                            <ul class="tech"><li>Streamlit</li><li>Plotly</li><li>Pingouin</li><li>Statsmodels</li></ul>
+                            <div class="project-links">
+                                <a class="project-link" href="https://github.com/bernas-estevam97/MotoRater-Dashboard/tree/dev" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+                                <a class="project-link" href="https://www.tse-systems.com/products/motorater/" target="_blank" rel="noopener noreferrer">About MotoRater<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+                            </div>
                         </div>
                     </article>
 
-                    <article class="project" data-category="automation">
-                        <div class="project-head">
-                            <h3 class="project-title">Y-Maze Cognitive Tracking</h3>
-                            <span class="tag tag-green">Computer vision</span>
+                    <article class="project span-3 reveal" data-category="automation">
+                        <div class="project-media project-icon" aria-hidden="true"><i class="ph ph-git-fork"></i></div>
+                        <div class="project-body">
+                            <span class="tag">Computer vision</span>
+                            <h3 class="project-title">Y-Maze Tracking</h3>
+                            <p class="project-desc">Tracks an animal through a Y-shaped maze and analyses its movement patterns across a recorded experiment.</p>
+                            <ul class="tech"><li>OpenCV</li><li>Shapely</li></ul>
+                            <a class="project-link" href="https://github.com/bernas-estevam97/Y-map-cogni-app" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                         </div>
-                        <p class="project-desc">Computer vision application that tracks an animal navigating a Y-shaped maze and analyses its movement patterns across a recorded experiment.</p>
-                        <ul class="tech"><li>OpenCV</li><li>Pillow</li><li>NumPy</li><li>Shapely</li></ul>
-                        <a class="project-link" href="https://github.com/bernas-estevam97/Y-map-cogni-app" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </article>
 
-                    <article class="project" data-category="automation">
-                        <div class="project-head">
+                    <article class="project span-3 reveal" style="--i: 1" data-category="automation">
+                        <div class="project-media project-icon" aria-hidden="true"><i class="ph ph-funnel"></i></div>
+                        <div class="project-body">
+                            <span class="tag">Data pipeline</span>
                             <h3 class="project-title">High-Throughput Data Treatment</h3>
-                            <span class="tag tag-green">Data pipeline</span>
+                            <p class="project-desc">Cleans gigabytes of raw laboratory measurements into structured reports using Parquet and multiprocessing.</p>
+                            <ul class="tech"><li>PyArrow</li><li>Calamine</li></ul>
+                            <a class="project-link" href="https://github.com/bernas-estevam97/data-cleaning-automation-scripts" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                         </div>
-                        <p class="project-desc">Data cleaning and ETL pipeline that uses Python-Calamine, Parquet columnar storage and multiprocessing to turn gigabytes of raw laboratory measurements into structured reports.</p>
-                        <ul class="tech"><li>Python-Calamine</li><li>Multiprocessing</li><li>PyArrow/Parquet</li><li>Pandas</li></ul>
-                        <a class="project-link" href="https://github.com/bernas-estevam97/data-cleaning-automation-scripts" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </article>
 
-                    <article class="project" data-category="automation">
-                        <div class="project-head">
-                            <h3 class="project-title">MotoRater Data Processor (Flet)</h3>
-                            <span class="tag tag-green">Data pipeline</span>
+                    <article class="project span-3 reveal" style="--i: 2" data-category="automation">
+                        <div class="project-media project-icon" aria-hidden="true"><i class="ph ph-lightning"></i></div>
+                        <div class="project-body">
+                            <span class="tag">Data pipeline</span>
+                            <h3 class="project-title">MotoRater Processor</h3>
+                            <p class="project-desc">Optimised MotoRater pipelines with a Flet interface for high-volume cleaning, Excel generation and schema conversion.</p>
+                            <ul class="tech"><li>Flet</li><li>Asyncio</li></ul>
+                            <a class="project-link" href="https://github.com/bernas-estevam97/Flet-Data-Processing" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                         </div>
-                        <p class="project-desc">Faster, optimised version of the MotoRater data pipelines with a Flet desktop interface, using asyncio and threading for high-volume cleaning, Excel generation and schema conversion.</p>
-                        <ul class="tech"><li>Flet</li><li>Asyncio</li><li>Multiprocessing</li><li>XlsxWriter</li></ul>
-                        <a class="project-link" href="https://github.com/bernas-estevam97/Flet-Data-Processing" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </article>
 
-                    <article class="project" data-category="gui">
-                        <div class="project-head">
-                            <h3 class="project-title">MotoRater Data Workflow (CustomTkinter)</h3>
-                            <span class="tag tag-yellow">Desktop app</span>
+                    <article class="project span-3 reveal" style="--i: 3" data-category="gui">
+                        <div class="project-media project-icon" aria-hidden="true"><i class="ph ph-app-window"></i></div>
+                        <div class="project-body">
+                            <span class="tag">Desktop app</span>
+                            <h3 class="project-title">MotoRater Workflow</h3>
+                            <p class="project-desc">Native desktop utility that runs offline MotoRater data preparation without terminal commands.</p>
+                            <ul class="tech"><li>CustomTkinter</li><li>Pandas</li></ul>
+                            <a class="project-link" href="https://github.com/bernas-estevam97/GUI-App-Script-Stash/tree/dev" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                         </div>
-                        <p class="project-desc">Native desktop utility for offline MotoRater data preparation that runs longitudinal analysis workflows without terminal commands.</p>
-                        <ul class="tech"><li>CustomTkinter</li><li>Python</li><li>Pandas</li><li>Python-Calamine</li></ul>
-                        <a class="project-link" href="https://github.com/bernas-estevam97/GUI-App-Script-Stash/tree/dev" target="_blank" rel="noopener noreferrer">Source code<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
                     </article>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Methods & tools -->
-            <section id="methods" class="section">
-                <h2 class="section-title">Methods &amp; tools</h2>
-                <dl class="methods">
-                    <div>
-                        <dt>Statistics &amp; data analysis</dt>
-                        <dd>Python (Pandas, NumPy), Pingouin, Statsmodels, R, SPSS, GraphPad Prism, SQL (PostgreSQL), Excel &amp; VBA</dd>
+        <!-- Methods & tools -->
+        <section id="methods" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title reveal">Methods &amp; tools</h2>
+                <div class="methods">
+                    <div class="method-group reveal">
+                        <h3><i class="ph ph-chart-scatter" aria-hidden="true"></i>Statistics &amp; analysis</h3>
+                        <ul class="chips"><li>Python</li><li>Pandas</li><li>NumPy</li><li>Pingouin</li><li>Statsmodels</li><li>R</li><li>SPSS</li><li>GraphPad Prism</li><li>PostgreSQL</li></ul>
                     </div>
-                    <div>
-                        <dt>Machine learning</dt>
-                        <dd>PyTorch, TensorFlow, Keras, scikit-learn, SciPy</dd>
+                    <div class="method-group reveal" style="--i: 1">
+                        <h3><i class="ph ph-brain" aria-hidden="true"></i>Machine learning</h3>
+                        <ul class="chips"><li>PyTorch</li><li>TensorFlow</li><li>Keras</li><li>scikit-learn</li><li>SciPy</li></ul>
                     </div>
-                    <div>
-                        <dt>Computer vision &amp; tracking</dt>
-                        <dd>OpenCV, Pillow, Shapely</dd>
+                    <div class="method-group reveal" style="--i: 2">
+                        <h3><i class="ph ph-scan" aria-hidden="true"></i>Computer vision</h3>
+                        <ul class="chips"><li>OpenCV</li><li>Pillow</li><li>Shapely</li></ul>
                     </div>
-                    <div>
-                        <dt>Visualisation &amp; applications</dt>
-                        <dd>Streamlit, Plotly, Matplotlib, Seaborn, JupyterLab, Django, JavaScript, HTML &amp; CSS</dd>
+                    <div class="method-group reveal">
+                        <h3><i class="ph ph-presentation-chart" aria-hidden="true"></i>Visualisation &amp; apps</h3>
+                        <ul class="chips"><li>Streamlit</li><li>Plotly</li><li>Matplotlib</li><li>Seaborn</li><li>JupyterLab</li><li>Django</li><li>JavaScript</li></ul>
                     </div>
-                    <div>
-                        <dt>Automation &amp; pipelines</dt>
-                        <dd>PyArrow (Parquet), Python-Calamine, multiprocessing, REST APIs, Selenium, BeautifulSoup, cron, PyAutoGUI</dd>
+                    <div class="method-group reveal" style="--i: 1">
+                        <h3><i class="ph ph-gear-six" aria-hidden="true"></i>Automation &amp; pipelines</h3>
+                        <ul class="chips"><li>PyArrow</li><li>Parquet</li><li>Multiprocessing</li><li>REST APIs</li><li>Selenium</li><li>BeautifulSoup</li><li>cron</li></ul>
                     </div>
-                </dl>
-            </section>
+                </div>
+            </div>
+        </section>
 
-            <!-- Contact -->
-            <section id="contact" class="section">
-                <h2 class="section-title">Contact</h2>
-                <p class="section-note">For research collaborations, questions about any of the tools above, or a small side project, send a message here or reach me on <a href="https://www.linkedin.com/in/bernas-estevam97/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+        <!-- Contact -->
+        <section id="contact" class="section">
+            <div class="container contact-grid">
+                <div class="contact-intro reveal">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-sub">For research collaborations, questions about my tools or a small side project.</p>
+                    <ul class="contact-links">
+                        <li>
+                            <a href="https://www.linkedin.com/in/bernas-estevam97/" target="_blank" rel="noopener noreferrer">
+                                <i class="ph ph-linkedin-logo" aria-hidden="true"></i>linkedin.com/in/bernas-estevam97
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/bernas-estevam97" target="_blank" rel="noopener noreferrer">
+                                <i class="ph ph-github-logo" aria-hidden="true"></i>github.com/bernas-estevam97
+                            </a>
+                        </li>
+                        <li>
+                            <span><i class="ph ph-map-pin" aria-hidden="true"></i>Faro, Portugal</span>
+                        </li>
+                    </ul>
+                </div>
 
-                <form id="contactForm" class="contact-form">
+                <form id="contactForm" class="contact-form reveal" style="--i: 1">
                     <input type="hidden" name="access_key" value="d12cd701-006d-413e-93c4-4d60e0e7c870">
                     <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off">
 
@@ -321,7 +357,7 @@
 
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" class="form-input form-textarea" rows="6" placeholder="What would you like to discuss?" required></textarea>
+                        <textarea id="message" name="message" class="form-input form-textarea" rows="5" placeholder="What would you like to discuss?" required></textarea>
                     </div>
 
                     <div class="h-captcha" data-captcha="true"></div>
@@ -330,18 +366,20 @@
                         Your name, email and message are used only to reply to you and are never shared or sold. See the <a href="privacy/">privacy policy</a>.
                     </p>
 
-                    <button type="submit" id="submitBtn" class="btn-primary">Send message</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary">Send message</button>
 
                     <p id="formResult" class="form-result" role="status" aria-live="polite"></p>
                 </form>
-            </section>
+            </div>
+        </section>
+    </main>
 
-            <footer class="footer">
-                <p>&copy; <span id="year"></span> Bernardo Estevam</p>
-                <a href="privacy/">Privacy policy</a>
-            </footer>
-        </main>
-    </div>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>&copy; <span id="year"></span> Bernardo Estevam</p>
+            <a href="privacy/">Privacy policy</a>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
     <script src="https://web3forms.com/client/script.js" async defer></script>
