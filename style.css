@@ -362,7 +362,7 @@ button {
 }
 
 .hero-eyebrow {
-    display: inline-flex;
+    display: inline-block;
     padding: 6px 14px;
     font-size: 0.85rem;
     font-weight: 500;
@@ -370,6 +370,10 @@ button {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 999px;
+}
+
+.hero-eyebrow .nowrap {
+    white-space: nowrap;
 }
 
 .hero-title {
@@ -832,6 +836,7 @@ button {
 .contact-links a,
 .contact-links span {
     display: inline-flex;
+    overflow-wrap: anywhere;
     align-items: center;
     gap: 12px;
     font-size: 0.95rem;
@@ -1216,18 +1221,46 @@ button {
         padding: calc(var(--header-h) + 40px) 0 160px;
     }
 
-    .hero-grid,
     .about-grid,
     .contact-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 48px;
     }
 
+    /* Portrait sits beside the eyebrow so the top row has no dead space;
+       the headline, text and buttons then run full width below */
+    .hero-grid {
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: center;
+        gap: 0 24px;
+    }
+
+    .hero-copy {
+        display: contents;
+    }
+
     .hero-portrait {
-        order: -1;
+        grid-column: 1;
+        grid-row: 1;
         justify-self: start;
-        width: 132px;
-        padding: 6px;
+        width: 112px;
+        padding: 5px;
+    }
+
+    .hero-eyebrow {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: start;
+    }
+
+    .hero-title,
+    .hero-sub,
+    .hero-actions {
+        grid-column: 1 / -1;
+    }
+
+    .hero-title {
+        margin-top: 32px;
     }
 
     .hero-portrait::after {
@@ -1269,6 +1302,14 @@ button {
 
     .contact-form {
         padding: 22px;
+    }
+
+    /* Beside the portrait on phones, the eyebrow reads better as plain text */
+    .hero-eyebrow {
+        padding: 0;
+        font-size: 0.95rem;
+        background: none;
+        border: 0;
     }
 
     .doc {
