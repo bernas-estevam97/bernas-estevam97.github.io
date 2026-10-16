@@ -153,32 +153,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       6. Hero canvas: drifting tracked keypoints with short trails,
-          linked when close, like pose-tracking output
+       6. Hero canvas: hindlimb gait stick diagram
+          A tracked limb (iliac crest, hip, knee, ankle, toe) walks across the
+          bottom of the hero, leaving stroboscopic stick traces, the toe
+          trajectory and paw prints, as in kinematic gait analysis figures.
        ========================================================================== */
     const canvas = document.getElementById('heroCanvas');
 
     if (canvas && canvas.getContext) {
         const ctx = canvas.getContext('2d');
-        const TRAIL = 22;
-        const LINK_DIST = 130;
-        let points = [];
+
+        // Gait parameters in limb units (scaled to screen by `u`)
+        const CYCLE = 1.15;          // seconds per step cycle
+        const STANCE = 0.6;          // fraction of the cycle the paw is on the ground
+        const STRIDE = 92;           // stride length
+        const FEMUR = 46;
+        const TIBIA = 50;
+        const FOOT = 26;
+        const HIP_HEIGHT = 84;
+        const LIFT = 22;             // toe clearance during swing
+        const SNAP_EVERY = 0.26;     // seconds between stick snapshots
+        const FADE = 7;              // seconds for traces to fade out
+
         let width = 0;
         let height = 0;
+        let u = 1;
+        let ground = 0;
         let running = false;
         let frame = 0;
+        let lastTs = 0;
 
-        function makePoints() {
-            const count = Math.round(Math.min(60, Math.max(22, (width * height) / 20000)));
-            points = Array.from({ length: count }, () => ({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                angle: Math.random() * Math.PI * 2,
-                speed: 0.25 + Math.random() * 0.45,
-                turn: (Math.random() - 0.5) * 0.02,
-                trail: []
-            }));
-        }
+        let t = 0;                   // time since the current crossing started
+        let x0 = 0;                  // hip x at t = 0
+        let clock = 0;               // total elapsed time, used for fading
+        let lastSnap = 0;
+        let lastStep = -1;
+        let snaps = [];
+        let toePath = [];
+        let prints = [];
 
         function resize() {
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -187,78 +199,195 @@ document.addEventListener('DOMContentLoaded', () => {
             canvas.width = Math.round(width * dpr);
             canvas.height = Math.round(height * dpr);
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            makePoints();
+            // Scale the limb with the hero so it reads on large screens and fits on phones
+            u = Math.max(0.7, Math.min(1.7, height / 820, width / 620));
+            ground = height - 52 * u;
+            resetCrossing();
+            snaps = [];
+            toePath = [];
+            prints = [];
         }
 
-        function step() {
-            points.forEach(p => {
-                // Smooth wandering: slowly varying turn rate
-                p.turn += (Math.random() - 0.5) * 0.004;
-                p.turn = Math.max(-0.03, Math.min(0.03, p.turn));
-                p.angle += p.turn;
-                p.x += Math.cos(p.angle) * p.speed;
-                p.y += Math.sin(p.angle) * p.speed;
+        function resetCrossing() {
+            t = 0;
+            x0 = -140 * u;
+            lastSnap = -SNAP_EVERY;
+            lastStep = -1;
+        }
 
-                // Wrap around edges, clearing the trail so no line crosses the canvas
-                if (p.x < -20 || p.x > width + 20 || p.y < -20 || p.y > height + 20) {
-                    p.x = (p.x + width + 40) % (width + 40) - 20;
-                    p.y = (p.y + height + 40) % (height + 40) - 20;
-                    p.trail = [];
-                }
+        // Pose of one limb at time `time`, with a phase offset for the contralateral limb
+        function pose(time, offset) {
+            const s = STRIDE * u;
+            const speed = s / CYCLE;
+            const local = time / CYCLE + offset;
+            const step = Math.floor(local);
+            const phase = local - step;
 
-                p.trail.push(p.x, p.y);
-                if (p.trail.length > TRAIL * 2) p.trail.splice(0, 2);
-            });
+            const hipX = x0 + speed * time;
+            const hipY = ground - HIP_HEIGHT * u + Math.cos(phase * Math.PI * 4) * 2.5 * u;
+
+            // Paw lands 0.45 strides ahead of where the hip is at touchdown
+            const contactX = x0 + speed * (step - offset) * CYCLE + 0.45 * s;
+            let toeX;
+            let toeY;
+            let footAngle;
+
+            if (phase < STANCE) {
+                const k = phase / STANCE;
+                toeX = contactX;
+                toeY = ground;
+                footAngle = 0.25 + k * 0.7;           // heel rises through stance
+            } else {
+                const k = (phase - STANCE) / (1 - STANCE);
+                const ease = k * k * (3 - 2 * k);
+                toeX = contactX + s * ease;
+                toeY = ground - Math.sin(Math.PI * k) * LIFT * u;
+                footAngle = 0.95 - ease * 0.7;        // foot swings back to flat
+            }
+
+            const ankleX = toeX - Math.cos(footAngle) * FOOT * u;
+            const ankleY = toeY - Math.sin(footAngle) * FOOT * u;
+
+            // Two-link inverse kinematics for the knee, which points forward
+            const a = FEMUR * u;
+            const b = TIBIA * u;
+            const dx = ankleX - hipX;
+            const dy = ankleY - hipY;
+            const d = Math.min(Math.hypot(dx, dy), a + b - 0.5);
+            const base = Math.atan2(dy, dx);
+            const bend = Math.acos(Math.max(-1, Math.min(1, (a * a + d * d - b * b) / (2 * a * d))));
+            const kneeA = [hipX + Math.cos(base - bend) * a, hipY + Math.sin(base - bend) * a];
+            const kneeB = [hipX + Math.cos(base + bend) * a, hipY + Math.sin(base + bend) * a];
+            const knee = kneeA[0] > kneeB[0] ? kneeA : kneeB;
+
+            const crest = [hipX - 34 * u, hipY - 16 * u];
+
+            return {
+                step,
+                phase,
+                contactX,
+                points: [crest, [hipX, hipY], knee, [ankleX, ankleY], [toeX, toeY]]
+            };
+        }
+
+        function update(dt) {
+            t += dt;
+            clock += dt;
+
+            const main = pose(t, 0);
+
+            if (main.step !== lastStep && main.phase < STANCE) {
+                lastStep = main.step;
+                prints.push({ x: main.contactX, born: clock });
+            }
+
+            if (t - lastSnap >= SNAP_EVERY) {
+                lastSnap = t;
+                snaps.push({ points: main.points, born: clock });
+            }
+
+            toePath.push({ x: main.points[4][0], y: main.points[4][1], born: clock });
+
+            const alive = item => clock - item.born < FADE;
+            snaps = snaps.filter(alive);
+            toePath = toePath.filter(alive);
+            prints = prints.filter(alive);
+
+            // Start a new crossing once the limb has left the screen
+            if (main.points[0][0] > width + 60 * u) resetCrossing();
+        }
+
+        function strokeLimb(points, alpha, lineWidth) {
+            ctx.globalAlpha = alpha;
+            ctx.lineWidth = lineWidth;
+            ctx.beginPath();
+            ctx.moveTo(points[0][0], points[0][1]);
+            for (let i = 1; i < points.length; i++) ctx.lineTo(points[i][0], points[i][1]);
+            ctx.stroke();
         }
 
         function draw() {
-            const accent = getComputedStyle(root).getPropertyValue('--accent').trim() || '#2f5fd0';
-            ctx.clearRect(0, 0, width, height);
-            ctx.strokeStyle = accent;
-            ctx.fillStyle = accent;
-            ctx.lineWidth = 1;
+            const styles = getComputedStyle(root);
+            const accent = styles.getPropertyValue('--accent').trim() || '#2f5fd0';
+            const muted = styles.getPropertyValue('--muted').trim() || '#646b7b';
+            const surface = styles.getPropertyValue('--surface').trim() || '#ffffff';
 
-            // Trails
-            points.forEach(p => {
-                const t = p.trail;
-                for (let i = 2; i < t.length; i += 2) {
-                    ctx.globalAlpha = (i / t.length) * 0.35;
+            ctx.clearRect(0, 0, width, height);
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            // Ground line
+            ctx.strokeStyle = muted;
+            ctx.globalAlpha = 0.25;
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 7]);
+            ctx.beginPath();
+            ctx.moveTo(0, ground + 0.5);
+            ctx.lineTo(width, ground + 0.5);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Paw prints: a pad plus four toes
+            ctx.fillStyle = accent;
+            prints.forEach(p => {
+                const life = 1 - (clock - p.born) / FADE;
+                ctx.globalAlpha = 0.28 * life;
+                ctx.beginPath();
+                ctx.ellipse(p.x - 6 * u, ground + 10 * u, 7 * u, 3 * u, 0, 0, Math.PI * 2);
+                ctx.fill();
+                [[-1.6, -3.6], [1.8, -4.6], [5, -3], [6.4, 0.4]].forEach(([tx, ty]) => {
                     ctx.beginPath();
-                    ctx.moveTo(t[i - 2], t[i - 1]);
-                    ctx.lineTo(t[i], t[i + 1]);
-                    ctx.stroke();
-                }
+                    ctx.arc(p.x + tx * u, ground + 10 * u + ty * u, 1.5 * u, 0, Math.PI * 2);
+                    ctx.fill();
+                });
             });
 
-            // Links between nearby points
-            for (let i = 0; i < points.length; i++) {
-                for (let j = i + 1; j < points.length; j++) {
-                    const dx = points[i].x - points[j].x;
-                    const dy = points[i].y - points[j].y;
-                    const dist = Math.hypot(dx, dy);
-                    if (dist < LINK_DIST) {
-                        ctx.globalAlpha = (1 - dist / LINK_DIST) * 0.28;
-                        ctx.beginPath();
-                        ctx.moveTo(points[i].x, points[i].y);
-                        ctx.lineTo(points[j].x, points[j].y);
-                        ctx.stroke();
-                    }
-                }
+            // Stroboscopic stick traces
+            ctx.strokeStyle = muted;
+            snaps.forEach(s => {
+                const life = 1 - (clock - s.born) / FADE;
+                strokeLimb(s.points, 0.35 * life * life, 1.1);
+            });
+
+            // Toe trajectory
+            ctx.strokeStyle = accent;
+            ctx.lineWidth = 1.25;
+            for (let i = 1; i < toePath.length; i++) {
+                const a = toePath[i - 1];
+                const b = toePath[i];
+                if (b.x < a.x) continue;               // skip the jump between crossings
+                ctx.globalAlpha = 0.5 * (1 - (clock - b.born) / FADE);
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+                ctx.lineTo(b.x, b.y);
+                ctx.stroke();
             }
 
-            // Keypoints
-            ctx.globalAlpha = 0.75;
-            points.forEach(p => {
+            // Contralateral limb, half a cycle out of phase and fainter
+            ctx.strokeStyle = accent;
+            strokeLimb(pose(t, 0.5).points, 0.3, 2);
+
+            // Current limb with tracking markers
+            const main = pose(t, 0).points;
+            strokeLimb(main, 0.9, 2.25);
+            ctx.globalAlpha = 1;
+            main.forEach(([px, py]) => {
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, 2.2, 0, Math.PI * 2);
+                ctx.arc(px, py, 4 * u, 0, Math.PI * 2);
+                ctx.fillStyle = surface;
                 ctx.fill();
+                ctx.lineWidth = 1.75;
+                ctx.strokeStyle = accent;
+                ctx.stroke();
             });
             ctx.globalAlpha = 1;
         }
 
-        function loop() {
+        function loop(ts) {
             if (!running) return;
-            step();
+            const dt = lastTs ? Math.min((ts - lastTs) / 1000, 0.05) : 0;
+            lastTs = ts;
+            update(dt);
             draw();
             frame = requestAnimationFrame(loop);
         }
@@ -266,6 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function start() {
             if (running || reduceMotion.matches) return;
             running = true;
+            lastTs = 0;
             frame = requestAnimationFrame(loop);
         }
 
@@ -275,8 +405,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function drawStill() {
-            // Pre-roll so the still frame shows trails instead of bare dots
-            for (let i = 0; i < TRAIL; i++) step();
+            // Pre-roll the walk so the first frame already shows a stick diagram:
+            // two thirds across for the static (reduced motion) version, a quarter
+            // across when animating so the limb is seen walking under the content.
+            resetCrossing();
+            snaps = [];
+            toePath = [];
+            prints = [];
+            const speed = (STRIDE * u) / CYCLE;
+            const target = (width * (reduceMotion.matches ? 0.66 : 0.25) - x0) / speed;
+            while (t < target) update(1 / 60);
             draw();
         }
 

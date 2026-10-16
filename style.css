@@ -336,7 +336,8 @@ button {
     align-items: center;
     min-height: 100vh;
     min-height: 100dvh;
-    padding: calc(var(--header-h) + 48px) 0 72px;
+    /* Bottom padding leaves room for the gait animation band */
+    padding: calc(var(--header-h) + 32px) 0 clamp(190px, 22vh, 300px);
     overflow: hidden;
 }
 
@@ -346,8 +347,9 @@ button {
     z-index: 0;
     width: 100%;
     height: 100%;
-    -webkit-mask-image: radial-gradient(ellipse 65% 75% at 70% 50%, #000 30%, transparent 75%);
-    mask-image: radial-gradient(ellipse 65% 75% at 70% 50%, #000 30%, transparent 75%);
+    /* Fade the gait band in and out at the screen edges */
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
 
 .hero-grid {
@@ -1211,7 +1213,7 @@ button {
 
     .hero {
         min-height: 0;
-        padding: calc(var(--header-h) + 40px) 0 72px;
+        padding: calc(var(--header-h) + 40px) 0 160px;
     }
 
     .hero-grid,
@@ -1232,10 +1234,6 @@ button {
         inset: -8px;
     }
 
-    .hero-canvas {
-        -webkit-mask-image: radial-gradient(ellipse 90% 60% at 60% 30%, #000 20%, transparent 75%);
-        mask-image: radial-gradient(ellipse 90% 60% at 60% 30%, #000 20%, transparent 75%);
-    }
 
     .timelines {
         grid-template-columns: 1fr;
